@@ -1,0 +1,9 @@
+{
+  "name": "woofer",
+  "version": "0.1.0",
+  "description": "Twitter clone but instead of tweets, it's woofs",
+  "main": "src/index.js",
+  "repository": "https://github.com/prvnbist/woofer",
+  "author": "Praveen Bisht",
+  "license": "MIT"
+}

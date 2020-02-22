@@ -1,0 +1,17 @@
+{
+   "name": "server",
+   "version": "1.0.0",
+   "main": "index.js",
+   "author": "Praveen Bisht",
+   "license": "MIT",
+   "scripts": {
+      "start": "nodemon src/index.js"
+   },
+   "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^5.9.2"
+   },
+   "devDependencies": {
+      "nodemon": "^2.0.2"
+   }
+}
