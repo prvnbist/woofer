@@ -1,9 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const { ApolloServer } = require('apollo-server-express')
 
 const KEYS = require('./configs/keys')
+const schema = require('./graphql')
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4001
 const app = express()
 
 mongoose.connect(
@@ -20,4 +22,12 @@ mongoose.connect(
    }
 )
 
-app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
+const server = new ApolloServer({ schema })
+
+server.applyMiddleware({ app, path: '/graphql' })
+
+app.listen({ port: PORT }, () =>
+   console.log(
+      `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+   )
+)
