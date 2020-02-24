@@ -8,6 +8,7 @@ const woofSchema = new Schema(
          minLength: [1, 'Woof too small'],
          maxlength: [320, 'Woof too big']
       },
+      isActive: { type: Boolean, required: true },
       author: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
       likesCount: { type: Number, default: 0 },
       likes: [{ type: mongoose.Types.ObjectId, ref: 'User' }],

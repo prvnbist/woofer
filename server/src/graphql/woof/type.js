@@ -9,6 +9,7 @@ const typeDef = gql`
       likes: [User]!
       repliesCount: Int!
       replies: [Woof]!
+      isActive: Boolean!
    }
 `
 
