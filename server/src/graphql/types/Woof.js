@@ -4,7 +4,6 @@ const typeDef = gql`
    type Woof {
       id: ID!
       message: String!
-      images: [String]!
       author: User!
       likesCount: Int!
       likes: [User]!
