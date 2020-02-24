@@ -12,7 +12,6 @@ const typeDef = gql`
       following(id: ID!): [User]!
       "Get user's liked tweets"
       liked(id: ID!): [Woof]!
-
       "List of global woofs or by a user"
       woofs(id: ID): [Woof]!
       "Get a woof by woof ID"

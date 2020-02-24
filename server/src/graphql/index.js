@@ -1,16 +1,14 @@
 const { makeExecutableSchema } = require('graphql-tools')
 
-const {
-   User: UserType,
-   Woof: WoofType,
-   Query: QueryType,
-   Response: ResponseType
-} = require('./types')
-const resolvers = require('./resolvers')
+const { type: User } = require('./user')
+
+const { type: Woof } = require('./woof')
+
+const Queries = require('./queries')
 
 const schema = makeExecutableSchema({
-   typeDefs: [UserType, WoofType, QueryType, ResponseType],
-   resolvers
+   typeDefs: [User, Woof, Queries],
+   resolvers: {}
 })
 
 module.exports = schema
