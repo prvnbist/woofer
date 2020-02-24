@@ -26,12 +26,15 @@ const userSchema = new Schema(
          }
       },
       email: String,
+      isActive: { type: Boolean, required: true },
       woofCount: { type: Number, default: 0 },
       woofs: [{ type: mongoose.Types.ObjectId, ref: 'Woof' }],
       followerCount: { type: Number, default: 0 },
       followers: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
       followingCount: { type: Number, default: 0 },
-      following: [{ type: mongoose.Types.ObjectId, ref: 'User' }]
+      following: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
+      likedCount: { type: Number, default: 0 },
+      likedWoofs: [{ type: mongoose.Types.ObjectId, ref: 'Woof' }]
    },
    { timestamps: true }
 )
