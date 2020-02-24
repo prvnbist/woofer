@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const userSchema = new Schema(
+const woofSchema = new Schema(
    {
       message: {
          type: String,
@@ -18,6 +18,6 @@ const userSchema = new Schema(
    { timestamps: true }
 )
 
-const User = new mongoose.model('User', userSchema)
+const User = new mongoose.model('Woof', woofSchema)
 
-module.exports = User
+module.exports = Woof
