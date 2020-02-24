@@ -11,6 +11,15 @@ const typeDef = gql`
       replies: [Woof]!
       isActive: Boolean!
    }
+   input CreateWoofInput {
+      authorId: ID!
+      message: String!
+   }
+   input ReplyWoofInput {
+      authorId: ID!
+      message: String!
+      repliedTo: ID!
+   }
 `
 
 module.exports = typeDef

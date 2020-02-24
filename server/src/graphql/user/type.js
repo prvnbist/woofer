@@ -19,5 +19,16 @@ const typeDef = gql`
       likedCount: Int!
       likedWoofs: [Woof]!
    }
+   input CreateUserInput {
+      name: String!
+      image: String!
+      googleId: String!
+      email: String!
+   }
+   input UpdateUserInput {
+      name: String
+      bio: String
+      username: String
+   }
 `
 module.exports = typeDef
