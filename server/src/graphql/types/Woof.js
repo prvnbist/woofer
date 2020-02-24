@@ -9,7 +9,7 @@ const typeDef = gql`
       likesCount: Int!
       likes: [User]!
       repliesCount: Int!
-      replies: [User]!
+      replies: [Woof]!
    }
 `
 

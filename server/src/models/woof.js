@@ -13,7 +13,7 @@ const woofSchema = new Schema(
       likesCount: { type: Number, default: 0 },
       likes: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
       repliesCount: { type: Number, default: 0 },
-      replies: [{ type: mongoose.Types.ObjectId, ref: 'User' }]
+      replies: [{ type: mongoose.Types.ObjectId, ref: 'Woof' }]
    },
    { timestamps: true }
 )
