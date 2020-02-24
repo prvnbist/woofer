@@ -12,6 +12,7 @@
       "express": "^4.17.1",
       "graphql": "^14.6.0",
       "graphql-tools": "^4.0.7",
+      "lodash.merge": "^4.6.2",
       "mongoose": "^5.9.2"
    },
    "devDependencies": {
