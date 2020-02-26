@@ -14,7 +14,8 @@ mongoose.connect(
       useCreateIndex: true,
       useNewUrlParser: true,
       useFindAndModify: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
    },
    error => {
       if (error) console.log(`Error connecting to DB: ${error.message}`)
@@ -22,7 +23,7 @@ mongoose.connect(
    }
 )
 
-const server = new ApolloServer({ schema })
+const server = new ApolloServer({ schema, debug: false })
 
 server.applyMiddleware({ app, path: '/graphql' })
 

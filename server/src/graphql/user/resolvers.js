@@ -29,6 +29,18 @@ module.exports = {
          } catch (error) {
             throw new UserInputError(error.message)
          }
+      },
+      deleteUser: async (_, { id }) => {
+         try {
+            await User.findByIdAndUpdate(id, { isActive: false })
+            return {
+               code: '200',
+               success: true,
+               message: 'User deleted successfully!'
+            }
+         } catch (error) {
+            throw new UserInputError(error.message)
+         }
       }
    }
 }
