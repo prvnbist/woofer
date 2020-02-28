@@ -8,8 +8,8 @@ const woofSchema = new Schema(
          minLength: [1, 'Woof too small'],
          maxlength: [320, 'Woof too big']
       },
-      isActive: { type: Boolean, required: true },
-      author: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
+      isActive: { type: Boolean, required: true, default: true },
+      author: { type: mongoose.Types.ObjectId, ref: 'User' },
       likesCount: { type: Number, default: 0 },
       likes: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
       repliesCount: { type: Number, default: 0 },
@@ -18,6 +18,6 @@ const woofSchema = new Schema(
    { timestamps: true }
 )
 
-const User = new mongoose.model('Woof', woofSchema)
+const Woof = new mongoose.model('Woof', woofSchema)
 
 module.exports = Woof
