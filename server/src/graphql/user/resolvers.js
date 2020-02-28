@@ -12,6 +12,19 @@ module.exports = {
          return null
       }
    },
+   Query: {
+      user: async (_, { id }) => {
+         try {
+            const user = await User.findById(id)
+            if (user) {
+               return user
+            }
+            throw new Error('No user found!')
+         } catch (error) {
+            throw new Error(error.message)
+         }
+      }
+   },
    Mutation: {
       createUser: async (_, { input }) => {
          try {
