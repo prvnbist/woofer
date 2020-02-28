@@ -12,6 +12,16 @@ module.exports = {
          return null
       }
    },
+   User: {
+      followers: async parent => {
+         const users = await parent.followers.map(id => User.findById(id))
+         return users
+      },
+      following: async parent => {
+         const users = await parent.following.map(id => User.findById(id))
+         return users
+      }
+   },
    Query: {
       user: async (_, { id }) => {
          try {
@@ -28,11 +38,9 @@ module.exports = {
    Mutation: {
       createUser: async (_, { input }) => {
          try {
-            const data = {
-               ...input,
-               isActive: true
-            }
-            const user = await User.create(data)
+            const user = await User.create(input)
+            user.username = user.id.slice(-12)
+            user.save()
             return {
                code: '200',
                success: true,
@@ -88,6 +96,34 @@ module.exports = {
                code: '200',
                success: true,
                message: 'User deleted successfully!'
+            }
+         } catch (error) {
+            throw new UserInputError(error.message)
+         }
+      },
+      followUser: async (_, { followerId, followingId }) => {
+         try {
+            const me = await User.findByIdAndUpdate(
+               followerId,
+               {
+                  $inc: { followingCount: 1 },
+                  $push: { following: followingId }
+               },
+               { new: true }
+            )
+            const them = await User.findByIdAndUpdate(
+               followingId,
+               {
+                  $inc: { followersCount: 1 },
+                  $push: { followers: followerId }
+               },
+               { new: true }
+            )
+            return {
+               code: '200',
+               success: true,
+               message: `You've followed ${them.name}`,
+               user: me
             }
          } catch (error) {
             throw new UserInputError(error.message)

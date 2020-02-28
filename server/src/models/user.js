@@ -26,10 +26,10 @@ const userSchema = new Schema(
          }
       },
       email: String,
-      isActive: { type: Boolean, required: true },
+      isActive: { type: Boolean, required: true, default: true },
       woofCount: { type: Number, default: 0 },
       woofs: [{ type: mongoose.Types.ObjectId, ref: 'Woof' }],
-      followerCount: { type: Number, default: 0 },
+      followersCount: { type: Number, default: 0 },
       followers: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
       followingCount: { type: Number, default: 0 },
       following: [{ type: mongoose.Types.ObjectId, ref: 'User' }],

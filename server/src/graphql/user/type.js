@@ -5,13 +5,13 @@ const typeDef = gql`
       id: ID!
       name: String!
       bio: String
-      image: String
+      image: String!
       googleId: String!
       username: String
       email: String!
       woofCount: Int!
       woofs: [Woof]!
-      followerCount: Int!
+      followersCount: Int!
       followers: [User]!
       followingCount: Int!
       following: [User]!
@@ -26,6 +26,7 @@ const typeDef = gql`
       email: String!
    }
    input UpdateUserInput {
+      id: ID!
       name: String
       bio: String
       username: String
