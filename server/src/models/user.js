@@ -39,21 +39,6 @@ const userSchema = new Schema(
    { timestamps: true }
 )
 
-userSchema.pre('save', true, function(next, done) {
-   const self = this
-   User.findOne({ username: self.username }, (error, user) => {
-      if (error) {
-         done(error)
-      } else if (user) {
-         self.invalidate('username')
-         done(new Error('Username must be unique'))
-      } else {
-         done()
-      }
-   })
-   next()
-})
-
 const User = new mongoose.model('User', userSchema)
 
 module.exports = User
