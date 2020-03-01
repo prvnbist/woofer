@@ -41,6 +41,31 @@ module.exports = {
          } catch (error) {
             throw new Error(error.message)
          }
+      },
+      deleteWoof: async (_, { id }) => {
+         try {
+            // Delete the woof
+            const woof = await Woof.findByIdAndUpdate(
+               id,
+               { isActive: false },
+               { new: true }
+            )
+
+            const user = await User.findById(woof.author)
+            // Decrement user's woof count
+            user.woofCount -= 1
+            // Delete woof from user's woofs list
+            user.woofs.pull(woof.id)
+            user.save()
+            return {
+               code: '200',
+               success: true,
+               message: `Woof has been deleted.`,
+               woof
+            }
+         } catch (error) {
+            throw new Error(error.message)
+         }
       }
    }
 }
