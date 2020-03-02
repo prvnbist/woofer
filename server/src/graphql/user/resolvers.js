@@ -1,4 +1,5 @@
 const User = require('../../models/user')
+const Woof = require('../../models/woof')
 const { UserInputError } = require('apollo-server-express')
 
 module.exports = {
@@ -91,7 +92,13 @@ module.exports = {
       },
       deleteUser: async (_, { id }) => {
          try {
-            await User.findByIdAndUpdate(id, { isActive: false })
+            const user = await User.findByIdAndUpdate(id, { isActive: false })
+            await user.woofs.map(async id => {
+               const woof = await Woof.findByIdAndUpdate(id, {
+                  isActive: false
+               })
+               return woof
+            })
             return {
                code: '200',
                success: true,
