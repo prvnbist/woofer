@@ -66,6 +66,48 @@ module.exports = {
          } catch (error) {
             throw new Error(error.message)
          }
+      },
+      likeWoof: async (_, { woofId, userId }) => {
+         try {
+            // Check if woof has been already liked by this user
+            const user = await User.findById(userId)
+            const isAlreadyLiked = user.likedWoofs.includes(woofId)
+            if (isAlreadyLiked) {
+               const woof = await Woof.findById(woofId)
+               woof.likesCount -= 1
+               woof.likes.pull(userId)
+               woof.save()
+
+               user.likedCount -= 1
+               user.likedWoofs.pull(woofId)
+               user.save()
+
+               return {
+                  code: '200',
+                  success: true,
+                  message: `You unliked this woof!`,
+                  woof
+               }
+            } else {
+               const woof = await Woof.findById(woofId)
+               woof.likesCount += 1
+               woof.likes.push(userId)
+               woof.save()
+
+               user.likedCount += 1
+               user.likedWoofs.push(woofId)
+               user.save()
+
+               return {
+                  code: '200',
+                  success: true,
+                  message: `You liked this woof!`,
+                  woof
+               }
+            }
+         } catch (error) {
+            throw new Error(error.message)
+         }
       }
    }
 }
