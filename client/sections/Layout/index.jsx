@@ -2,11 +2,13 @@ import React from 'react'
 
 import { Header, Main } from '../'
 
+import { StyledLayout } from './styled'
+
 const Layout = ({ children }) => (
-   <div>
+   <StyledLayout>
       <Header />
       <Main>{children}</Main>
-   </div>
+   </StyledLayout>
 )
 
 export default Layout
