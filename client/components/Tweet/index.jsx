@@ -27,11 +27,11 @@ const Tweet = ({ user, woof }) => {
          <Avatar username={user.username} title={user.name} url={user.image} />
          <div>
             <StyledHeader>
-               <div>
+               <div onClick={() => router.push(`/profile/${user.username}`)}>
                   <StyledName>{user.name}</StyledName>
                   <StyledSpan>@{user.username}</StyledSpan>
                </div>
-               <StyledSpan>
+               <StyledSpan data-type="timestamp">
                   {new Intl.DateTimeFormat('en-US', {
                      year: 'numeric',
                      month: 'short',

@@ -20,6 +20,7 @@ export const StyledHeader = styled.header`
    > div {
       display: flex;
       align-items: center;
+      cursor: pointer;
    }
 `
 
@@ -33,6 +34,9 @@ export const StyledName = styled.h3`
 export const StyledSpan = styled.span`
    color: #a3bed1;
    font-weight: 400;
+   &[data-type='timestamp'] {
+      font-size: 14px;
+   }
 `
 
 export const StyledContent = styled.p`
