@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Header, Main } from '../'
+import Header from '../Header'
+import Main from '../Main'
 
 import { StyledLayout } from './styled'
 

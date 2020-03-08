@@ -2,7 +2,8 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 // Components
-import { ButtonGroup, IconButton, Avatar } from '../'
+import { ButtonGroup, IconButton } from '../Button'
+import Avatar from '../Avatar'
 
 // Icons
 import { CommentIcon, HeartIcon } from '../../icons'
@@ -22,12 +23,17 @@ const Tweet = ({ user, woof }) => {
       router.push(`/woof/${woof.id}`)
    }
    const handleLike = () => {}
+   const goToProfile = () => router.push(`/profile/${user.username}`)
    return (
       <StyledWrapper>
          <Avatar username={user.username} title={user.name} url={user.image} />
          <div>
             <StyledHeader>
-               <div onClick={() => router.push(`/profile/${user.username}`)}>
+               <div
+                  tabIndex="0"
+                  role="button"
+                  onClick={goToProfile}
+                  onKeyPress={e => e.charCode === 32 && goToProfile()}>
                   <StyledName>{user.name}</StyledName>
                   <StyledSpan>@{user.username}</StyledSpan>
                </div>
